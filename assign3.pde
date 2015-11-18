@@ -13,12 +13,13 @@ PImage hp;
 PImage treasure;
 int x1=0;//bg
 int x2=-30;//enemy
-int y2=floor(random(0,480));//enemy
+int y2=floor(random(30,450));//enemy
 int x3=floor(random(0,560));//treasure
 int y3=floor(random(0,400));//treasure
 int x4=580;//fighter
 int y4=240;//fighter
 int w=37;//blood, 1%blood=1.9px 20%blood=38px
+int COUNT;
 float speed=5;
 
 final int START=0;
@@ -30,7 +31,7 @@ final int C=0;
 final int B=1;
 final int A=2;
 int state2 = 0;
-int space=70;
+int space=50;
 
 boolean upPressed=false;
 boolean downPressed=false;
@@ -58,6 +59,7 @@ void setup () {
 
 void draw() {
   
+  
   switch(state){
    case START:
    image(start2,0,0);
@@ -73,6 +75,9 @@ void draw() {
   y4=240;
   
   break;
+  
+  
+  
   
    case RUN:
   image(bg1,x1,0);
@@ -115,16 +120,17 @@ void draw() {
       image(enemy,x2-i*space,y2);   
     }
     x2=x2+5;
-    if(y2>400){y2=400;}
+    if(y2>480){y2=480;}
     if(x2>920){
       state2=B;
       x2 = -30;
+      y2=floor(random(30,350));
     }
   break;
   
   case B:
-    if(y2>150){
-      y2=150;
+    if(y2>400){
+      y2=400;
     }
     for(int i=0; i<5; i++){
       image(enemy, x2-i*space, y2+i*space/1.5);
@@ -133,12 +139,13 @@ void draw() {
     if(x2>920){
     state2=A;
     x2=-30;
+    y2=floor(random(30,400));
     }
   break;
   
   case A:
-      if(y2>350){
-        y2=350;
+      if(y2>400){
+        y2=400;
       }
       if(y2<180){
         y2=180;
@@ -167,6 +174,7 @@ void draw() {
       if(x2>920){
       state2=C;
       x2=-30;
+      y2=floor(random(30,450));
       }
   break;
   
